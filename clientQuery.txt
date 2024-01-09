@@ -1,0 +1,83 @@
+query getAllUsers{
+  users{
+    _id
+    firstName
+    password
+  }
+}
+
+query getSingleUser{
+  user(_id:"123"){
+    _id
+    firstName
+    lastName
+  }
+}
+
+
+query getAllQuotes{
+  quotes{
+    name
+    by
+  }
+}
+
+query getQuotesByUser{
+  quoteByUser(_id:"123"){
+    name
+    by
+  }
+}
+
+=============>create user
+
+mutation createUser{
+  user:signupUser(userNew:{firstName:"Parth",lastName:"S",email:"a@a.com",password:"12345"}){
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+mutation createUser($userNew:UserInput!){
+  user:signupUser(userNew:$userNew){
+    _id
+    firstName
+    lastName
+    email
+  }
+}
+
+{
+  "userNew": {
+    "firstName": "parth",
+    "lastName": "savaliya",
+    "email": "p@p.com",
+    "password": "p@p.com"
+  }
+}
+
+
+=========> signIn
+mutation signInUser($userSignIn:UserSignInInput!){
+  user:signInUser(userSignIn:$userSignIn){
+   token
+  }
+}
+
+{
+  "userSignIn": {
+    "password": "p@p.com",
+    "email": "p@p.com"
+  }
+}
+
+=======>>>>>create quoteByUser
+mutation createQuote{
+  quote: createQuote(name:"Very Nice")
+}
+
+{
+  "authorization":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTljZDM2MTVkOWUzNGQ1NjgyMjJiNmUiLCJpYXQiOjE3MDQ3Nzg2NDd9.-uilGvt3tieCbyH7upmMT09Wj57nDmZ3PjVclwQUrug"
+}
